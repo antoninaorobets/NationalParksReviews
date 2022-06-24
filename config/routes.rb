@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
-  resources :comments
-  resources :parks, only: [:index, :show]
-
-  resources :users, only: [:show] do
-    # nested resource for reviews
-    resources :parks, only: [:index]
+ 
+  #/parks/:park_id/comments
+  resources :parks, only: [:index, :show] do
+    resources :comments
   end
 
+  #/users/:user_id/parks
+  resources :users, only: [:show] do
+    resources :parks, only: [:index]
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
