@@ -13,7 +13,7 @@ class ParksController < ApplicationController
     end
     def show
         park = Park.find_by(id: params[:id])
-        render json: park
+        render json: park, include: ["images", "comments", "comments.user"]
     end
     def users_index
         user = User.find(session[:user_id])
