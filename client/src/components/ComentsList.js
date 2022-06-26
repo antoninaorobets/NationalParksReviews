@@ -23,7 +23,10 @@ function ComentsList({allComments, park_id}) {
             })
             .then(r=>{
                 if (r.ok) {
-                    r.json().then(newComent => setComments([...comments, newComent]))
+                    r.json().then(newComent => {
+                        setComments([...comments, newComent])
+                        setText('')
+                        console.log('cleanup?')})
                 } else {
                     r.json().then(error => console.log(error))
                 }
@@ -42,7 +45,7 @@ function ComentsList({allComments, park_id}) {
   return (
     <div> <form onSubmit={handleSubmit}>
         <label > New comment: </label>
-        <input type="text" onChange={handleChange}></input>
+        <input type="text" value={text} onChange={handleChange}></input>
         <input type="submit"></input>
     </form>
 
