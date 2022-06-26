@@ -3,8 +3,7 @@ class ParksController < ApplicationController
 # http://localhost:3000/users/2/parks
     def index
         if params[:user_id]
-            # byebug
-            user = User.find(session[:user_id])
+            user = User.find(params[:user_id])
             parks = user.parks.uniq
             render json: parks, each_serializer: ParkCardSerializer
         else

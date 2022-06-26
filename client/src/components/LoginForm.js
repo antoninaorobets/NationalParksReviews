@@ -3,7 +3,7 @@ import { UserContext } from '../context/user';
 import { useNavigate, NavLink } from "react-router-dom";
 
 function LoginForm() {
-    const {user, setUser, isLogin, setIsLogin} = useContext(UserContext)
+    const {user, setUser, isLoggedIn, setIsLoggedIn} = useContext(UserContext)
     const history = useNavigate()
   
     const [formData, setFormData] = useState({
@@ -30,7 +30,7 @@ function LoginForm() {
             if (r.ok) {
                 r.json().then(data => {
                     setUser(data)
-                    setIsLogin(true)
+                    setIsLoggedIn(true)
                     history("/parks/my_parks")
                   })
                 }

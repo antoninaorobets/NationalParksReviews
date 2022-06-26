@@ -4,8 +4,8 @@ import { UserContext } from '../context/user';
 
 
 function TopBar() {
-    const { user, setUser, isLogin, setIsLogin } = useContext(UserContext)
-
+    console.log("render Top bar")
+    const { user, setUser, isLoggedIn, setIsLoggedIn } = useContext(UserContext)
     const handleLogout = (e) => {
         e.preventDefault()
         fetch('/logout', {
@@ -16,7 +16,7 @@ function TopBar() {
         })
             .then(r => {
                 if (r.ok) {
-                    r.json().then(setIsLogin(false), setUser(null))
+                    r.json().then(setIsLoggedIn(false), setUser(null))
                 } else {
                     r.json().then(error => console.log(error))
                 }
@@ -25,14 +25,13 @@ function TopBar() {
     const logout = <div> <button onClick={handleLogout}>Logout</button> </div>
     const loggedin = <NavLink to="/login"> Login </NavLink>
     const myParks =  <NavLink to="/parks/my_parks"><button>My Reviewed Parks</button></NavLink>
-
     return (
         <div style={{ "border": "1px solid blue", padding: "2px" }}>
             <NavLink to="/parks"><button>All Parks</button></NavLink>
             My new app:
-            {(isLogin) ? `Hi ${user.username}!` : null}
-            {(isLogin) ? logout : loggedin}
-            {(isLogin) ? myParks : null}
+            {(isLoggedIn) ? `Hi ${user.username}!` : null}
+            {(isLoggedIn) ? logout : loggedin}
+            {(isLoggedIn) ? myParks : null}
         </div>
     )
 }
