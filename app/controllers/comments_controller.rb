@@ -1,11 +1,13 @@
 class CommentsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_no_record_responce
     rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_record_responce
-
+    before_action :authorize, only: [:create, :update, :destroy]
+    wrap_parameters format: []
+    
     def index
         park = find_park
         comments = park.comments
-        render json: comments, status: :ok
+        render json: comments.order(created_at: :desc ), status: :ok
     end
     def show
         park = find_park
@@ -41,6 +43,10 @@ class CommentsController < ApplicationController
         render json: {errors: "No record found"}, status: :not_found
     end
     def render_invalid_record_responce invalid
-        render json: {errors: invalid.record.errors.full_messeges}, status: :unprocessable_entity 
+        render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity 
     end
+    def authorize
+        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
+    end
+    
 end
