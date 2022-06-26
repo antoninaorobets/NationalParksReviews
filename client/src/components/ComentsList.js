@@ -34,7 +34,11 @@ function ComentsList({allComments, park_id}) {
              console.error("login")
          }
     }
-     const list = comments.map(comment => <Comment key={comment.id} comment={comment}/>)
+    const handleDelete = (id) => {    
+        const updatedList = comments.filter(comment => comment.id !== id)
+        setComments(updatedList)
+    }
+     const list = comments.map(comment => <Comment key={comment.id} comment={comment} handleDelete={handleDelete}/>)
   return (
     <div> <form onSubmit={handleSubmit}>
         <label > New comment: </label>
