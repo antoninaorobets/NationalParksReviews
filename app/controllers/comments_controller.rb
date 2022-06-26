@@ -27,9 +27,14 @@ class CommentsController < ApplicationController
     end
     def destroy
         park = find_park
-        comment = park.comments.find(params[:id])
-        comment.destroy
-        head :no_content
+        comment = park.comments.find(params[:id]) 
+        # byebug
+        if comment[:user_id]== session[:user_id]
+            comment.destroy
+            render json: {}
+        else
+            render json: { error: "Not authorized" }, status: :unauthorized  
+        end
     end
 
     private
