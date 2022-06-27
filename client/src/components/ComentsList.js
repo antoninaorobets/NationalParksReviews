@@ -1,6 +1,7 @@
 import React,{useState, useContext} from 'react'
 import Comment from './Comment'
 import { UserContext } from '../context/user';
+import {Container, Row} from 'react-bootstrap';
 
 function ComentsList({allComments, park_id}) {
     const [text,setText] = useState('')
@@ -41,7 +42,14 @@ function ComentsList({allComments, park_id}) {
         const updatedList = comments.filter(comment => comment.id !== id)
         setComments(updatedList)
     }
-     const list = comments.map(comment => <Comment key={comment.id} comment={comment} handleDelete={handleDelete}/>)
+    const handleUpdate = (updatedComment) => {
+        const updates = comments.map(comment=> {
+            if (comment.id === updatedComment.id) {return updatedComment }
+            else {return comment}
+        })
+        setComments(updates)
+    }
+    const list = comments.map(comment => <Comment key={comment.id} comment={comment} handleDelete={handleDelete} handleUpdate={handleUpdate}/>)
   return (
     <div> <form onSubmit={handleSubmit}>
         <label > New comment: </label>
@@ -49,8 +57,12 @@ function ComentsList({allComments, park_id}) {
         <input type="submit"></input>
     </form>
 
+    <Container >
+      {list} 
+  
+          </Container>
         
-         {list} 
+         
     </div>
   )
 }
