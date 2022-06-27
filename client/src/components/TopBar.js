@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { UserContext } from '../context/user';
-
+import { Button, Container, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 function TopBar() {
     console.log("render Top bar")
@@ -22,18 +22,38 @@ function TopBar() {
                 }
             })
     }
-    const logout = <div> <button onClick={handleLogout}>Logout</button> </div>
-    const loggedin = <NavLink to="/login"> Login </NavLink>
-    const myParks =  <NavLink to="/parks/my_parks"><button>My Reviewed Parks</button></NavLink>
+
     return (
-        <div style={{ "border": "1px solid blue", padding: "2px" }}>
-            <NavLink to="/parks"><button>All Parks</button></NavLink>
-            My new app:
-            {(isLoggedIn) ? `Hi ${user.username}!` : null}
-            {(isLoggedIn) ? logout : loggedin}
-            {(isLoggedIn) ? myParks : null}
-        </div>
-    )
+        <Navbar   bg="dark" variant="dark" expand="lg">
+            <Container fluid>
+                <Navbar.Brand href="#">National Parks</Navbar.Brand>
+                <Navbar.Toggle aria-controls="navbarScroll" />
+                <Navbar.Collapse id="navbarScroll">
+                    <Nav
+                        className="me-auto my-2 my-lg-0"
+                        style={{ maxHeight: '100px' }}
+                        navbarScroll
+                    >
+                        <Nav.Link href="/parks">All Parks</Nav.Link>
+                        {(isLoggedIn)
+                            ? <Nav.Link href="/parks/my_parks">My Parks</Nav.Link>
+                            : null}
+                    </Nav>
+                    <Nav>
+                        {(isLoggedIn)
+                            ? <Navbar.Text>
+                                Signed in as: {user.username}
+
+                            </Navbar.Text>
+                            : null} 
+                        {(isLoggedIn)
+                            ? <Nav.Link to="/parks" onClick={handleLogout}> Logout </Nav.Link>
+                            : <NavLink to="/login"> Login </NavLink>}
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
+    );
 }
 
 export default TopBar

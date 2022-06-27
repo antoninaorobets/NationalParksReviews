@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
-import {NavLink} from "react-router-dom"
+import React, { useState, useContext } from 'react';
+import { useNavigate,NavLink } from "react-router-dom"
+import { UserContext } from '../context/user';
 
 function SignUpForm() {
+    const { user, setUser, isLoggedIn, setIsLoggedIn } = useContext(UserContext)
+    const history = useNavigate()
     const [formData, setFormData] = useState({
         username: "",
         password: "",
@@ -23,7 +26,20 @@ function SignUpForm() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(formData)
-        }).then(r => r.json()).then(data => console.log(data))
+        }).then(r => {
+            if (r.ok) {
+                r.json().then(data => {
+                    setUser(data)
+                    setIsLoggedIn(true)
+                    history("/parks")
+                })
+            } else {
+                r.json().then(error => 
+                console.log(error))
+             }
+        })
+
+
     }
 
     return (
@@ -56,7 +72,7 @@ function SignUpForm() {
                     value="Submit" />
             </form>
             <div>
-               Already has an account?
+                Already has an account?
                 <NavLink to="/login">Login</NavLink>
             </div>
         </div>
