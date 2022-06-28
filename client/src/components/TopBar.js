@@ -24,7 +24,7 @@ function TopBar() {
     }
 
     return (
-        <Navbar   bg="dark" variant="dark" expand="lg">
+        <Navbar sticky="top"   bg="dark" variant="dark" expand="lg">
             <Container fluid>
                 <Navbar.Brand href="#">National Parks</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />

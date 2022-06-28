@@ -41,37 +41,49 @@ function Comment({ comment, handleDelete, handleUpdate }) {
             }
         })
     }
-
-    const commentRead = <Form.Control type="text" placeholder={text} disabled readOnly />
-
-    const commentEdit =
-        <Form onSubmit={saveComment}>
-            <Form.Control type="text" value={text} onChange={(e) => setText(e.target.value)} />
-            <Button type="submit">Save</Button>
-        </Form>
-
     const commentDate = format(new Date(comment.created_at.substring(0, 10)), 'dddd MMMM Do')
 
-    return (
+    const commentRead =                   
+        <Form.Group>
+            <Form.Control type="text" placeholder={text} disabled readOnly />
+            <Stack direction="horizontal" gap={3}  style={{padding: "8px"}}>
+                {(user.id === comment.user.id && !isEditMode)
+                    ? <Button variant="secondary" onClick={() => { setIsEditMode(true) }}>Edit</Button>
+                    : null}
+                {(user.id === comment.user.id)
+                    ? <Button variant="secondary" onClick={onDelete}>Delete</Button>
+                    : null}
+            </Stack>
+        </Form.Group>
+        
 
-        <Card border="secondary" >
-            <Card.Header as="h5"> {comment.user.username} </Card.Header>
-            <Card.Body>
-                <Card.Text>
-                    {(isEditMode)
-                        ? commentEdit
-                        : commentRead
-                    }
-                    <cite title="posted"> {commentDate} </cite>
-                </Card.Text>
-                <Stack direction="horizontal" gap={3}>
-                    {(user.id === comment.user.id && !isEditMode)
-                        ? <Button variant="secondary" onClick={() => { setIsEditMode(true) }}>Edit</Button>
+    const commentEdit =
+            <Form onSubmit={saveComment}>
+                <Form.Group>
+                <Form.Control type="text" value={text} onChange={(e) => setText(e.target.value)} />
+                <Stack direction="horizontal" gap={3} style={{padding: "8px"}}>
+                    {(user.id === comment.user.id )
+                        ? <Button variant="success" type="submit" >Save</Button>
                         : null}
                     {(user.id === comment.user.id)
                         ? <Button variant="secondary" onClick={onDelete}>Delete</Button>
                         : null}
                 </Stack>
+                </Form.Group>
+            </Form>
+    return (
+
+        <Card border="secondary" style={{padding: "8px", margin: "10px"}} >
+            <Card.Header> {comment.user.username} 
+            <cite className=" ms-auto" style={{position: "absolute", right: "10px"}}> {commentDate} </cite>
+            </Card.Header>
+            <Card.Body>
+                <Card.Text>
+                    {(isEditMode)
+                        ? commentEdit
+                        : commentRead
+                    }                
+                </Card.Text>
             </Card.Body>
         </Card>
 
