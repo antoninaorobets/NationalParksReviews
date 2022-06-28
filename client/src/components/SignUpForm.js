@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate,NavLink } from "react-router-dom"
+import { useNavigate, NavLink } from "react-router-dom"
 import { UserContext } from '../context/user';
+import { Form, Button } from 'react-bootstrap';
 
 function SignUpForm() {
     const { user, setUser, isLoggedIn, setIsLoggedIn } = useContext(UserContext)
@@ -34,49 +35,51 @@ function SignUpForm() {
                     history("/parks")
                 })
             } else {
-                r.json().then(error => 
-                console.log(error))
-             }
+                r.json().then(error =>
+                    console.log(error))
+            }
         })
 
 
     }
 
     return (
-        <div>
-            Login Form
-            <form onSubmit={handleSignUp}>
-                <label>
-                    Username:
-                    <input
-                        type="text"
+        <div style={{ "margin": "auto", width: "50%", padding: "1rem" }}>
+            <h2>Create account</h2>
+            <Form onSubmit={handleSignUp}>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>User name</Form.Label>
+                    <Form.Control type="text"
                         name="username"
                         onChange={saveInput} />
-                </label>
-                <label>
-                    Password:
-                    <input
-                        type="text"
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password"
                         name="password"
                         onChange={saveInput} />
-                </label>
-                <label>
-                    Confirm Password:
-                    <input
-                        type="text"
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Confirm Password</Form.Label>
+                    <Form.Control type="password"
                         name="password_confirmation"
                         onChange={saveInput} />
-                </label>
-                <input
-                    type="submit"
-                    value="Submit" />
-            </form>
-            <div>
-                Already has an account?
-                <NavLink to="/login">Login</NavLink>
-            </div>
-        </div>
-    )
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                    <Form.Text className="text-muted">
+                        Already have an account?
+                        <NavLink to="/login">Login</NavLink>
+                    </Form.Text>
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+            </Form>
+
+
+        </div>)
 }
 
 export default SignUpForm;
