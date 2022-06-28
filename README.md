@@ -1,4 +1,8 @@
 # README
+National Parks in USA
+
+![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
