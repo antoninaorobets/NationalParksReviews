@@ -7,7 +7,8 @@ class ParksController < ApplicationController
             parks = user.parks.uniq
             render json: parks, each_serializer: ParkCardSerializer
         else
-            render json: Park.all, each_serializer: ParkCardSerializer
+            parks =Park.limit(params[:limit]).offset(params[:start])
+            render json: parks, each_serializer: ParkCardSerializer
         end
     end
     def show

@@ -5,7 +5,7 @@ import { Button, Card } from 'react-bootstrap';
 function ParkCard({ park }) {
 
   return (
-    <Card style={{ width: '18rem', "margin": "0.5rem" }}>
+    <Card style={{ width: '18rem', "margin": "0.5px" }}>
       <Card.Img variant="top" src={park.images[0].url} />
       <Card.Body>
         <Card.Title>{park.name}</Card.Title>

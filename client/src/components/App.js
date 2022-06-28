@@ -8,7 +8,6 @@ import ParksList from "./ParksList"
 import ParkInfo from "./ParkInfo";
 import { UserContext} from "../context/user"
 import MyParks from "./MyParks";
-import Test from "./Test";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -21,10 +20,7 @@ function App() {
             <Route path="/login" element={< LoginForm />} />
             <Route path="/signup" element={< SignUpForm />} />
             <Route path="/parks/:id" element={<ParkInfo />} />
-            <Route path="/parks/my_parks" element={ (isLoggedIn) 
-              ? <MyParks />
-              : <Navigate replace to="/parks"/>
-              } />
+            <Route path="/parks/my_parks" element={<MyParks />} />
             <Route path="/parks" element={<ParksList />} />
           </Routes>
       </div>

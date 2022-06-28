@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ComentsList from "./ComentsList";
+import { Button, Row, Container } from 'react-bootstrap';
 
 function ParkInfo() {
     const { id } = useParams()
@@ -21,12 +22,21 @@ function ParkInfo() {
     }, [])
     console.log("render Park info", park.comments)
     return (
-        <div>Park {id} Info
-            {park.name}
+        <div>
+            <h1>{park.full_name}</h1>
+            <p>{park.address}</p>
+            <p>{park.description}</p>
+            <p>{park.weather_info}</p>
+            <p>{park.directions_info}</p>
+            <p>{park.operating_hours}</p>
+            <a href={park.url}>wersite</a>
+            
+            
+            <Container fluid>
             {(park.comments) 
             ? <ComentsList allComments={park.comments} park_id={park.id} /> 
             : null}
-           
+         </Container>
         </div>
     )
 }
