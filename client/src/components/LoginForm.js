@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../context/user';
 import { useNavigate, NavLink } from "react-router-dom";
+import { Form, Button } from 'react-bootstrap';
 
 function LoginForm() {
     const {user, setUser, isLoggedIn, setIsLoggedIn} = useContext(UserContext)
@@ -41,35 +42,34 @@ function LoginForm() {
         })      
     }
     return (
-        <div>
-            Login Form
-            <form onSubmit={handleLogin}>
-                <label>
-                    Username:
-                    <input
-                        type="text"
+        <div style={{ "margin": "auto", width: "50%", padding: "1rem" }}>
+            <h2>Login Form</h2>
+            <Form onSubmit={handleLogin}>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>User name</Form.Label>
+        <Form.Control type="text"
                         name="username"
-                        onChange={saveInput} />
-                </label>
-                <label>
-                    Password:
-                    <input
-                        type="text"
+                        onChange={saveInput}   />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password"
                         name="password"
-                        onChange={saveInput} />
-                </label>
-                <input
-                    type="submit"
-                    value="Submit" />
-            </form>
-            <div>
-                Don't have an account?
+                        onChange={saveInput}  />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+      <Form.Text className="text-muted">
+        Don't have an account?
                 <NavLink to="/signup">Signup</NavLink>
-            </div>
-            <div>
-        
-                <NavLink to="/signup">Forgot password?</NavLink>
-            </div>
+        </Form.Text>
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
+
+
         </div>)
 }
 
