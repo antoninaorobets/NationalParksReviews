@@ -65,9 +65,9 @@ function ParksList() {
   // const parkCards = parks.map(park => <ParkCard key={park.id} park={park} />)
   return (
     <div>
-      <div  style={{"margin": "auto", width: "50%", padding: "1rem"}}>
-      <h1>National Parks in USA</h1>
-      </div>
+    
+      <h1 style={{"margin": "auto", width: "50%", padding: "1rem"}}>National Parks in USA</h1>
+   
       <Container fluid>
         <Row className="justify-content-md-center">
           {parkCards}
