@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import React, { useContext } from 'react';
+import { Container, Nav, Navbar } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 import { UserContext } from '../context/user';
-import { Button, Container, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 function TopBar() {
     console.log("render Top bar")
@@ -34,9 +34,9 @@ function TopBar() {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link href="/parks">All Parks</Nav.Link>
+                        <NavLink to="/parks">All Parks</NavLink>
                         {(isLoggedIn)
-                            ? <Nav.Link href="/parks/my_parks">My Parks</Nav.Link>
+                            ? <NavLink to="/parks/my_parks">My Parks</NavLink>
                             : null}
                     </Nav>
                     <Nav>
@@ -47,7 +47,7 @@ function TopBar() {
                             </Navbar.Text>
                             : null} 
                         {(isLoggedIn)
-                            ? <Nav.Link to="/parks" onClick={handleLogout}> Logout </Nav.Link>
+                            ? <NavLink to="/parks" onClick={handleLogout}> Logout </NavLink>
                             : <NavLink to="/login"> Login </NavLink>}
                     </Nav>
                 </Navbar.Collapse>

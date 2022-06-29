@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { Container } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 import ComentsList from "./ComentsList";
-import CaruselItem from './CaruselItem'
-import { Button, Row, Container, Carousel } from 'react-bootstrap';
 
 function ParkInfo() {
     const { id } = useParams()

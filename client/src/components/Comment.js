@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react'
+import { format } from 'fecha';
+import React, { useContext, useState } from 'react';
+import { Button, Card, Form, Stack } from 'react-bootstrap';
 import { UserContext } from '../context/user';
-import { Card, Button, Form, Stack } from 'react-bootstrap';
-import { format } from 'fecha'
 
 
 function Comment({ comment, handleDelete, handleUpdate }) {

@@ -1,7 +1,6 @@
-import React from 'react'
-import { useState, useEffect, useRef, useCallback } from "react";
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Container, Row } from 'react-bootstrap';
 import ParkCard from './ParkCard';
-import {  Row, Container } from 'react-bootstrap';
 
 function ParksList() {
   const [parks, setParks] = useState([]);

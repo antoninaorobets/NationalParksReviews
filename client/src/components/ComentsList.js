@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react'
-import Comment from './Comment'
+import React, { useContext, useState } from 'react';
+import { Button, Card, Container, Form } from 'react-bootstrap';
 import { UserContext } from '../context/user';
-import { Container, Form, Button, Card } from 'react-bootstrap';
+import Comment from './Comment';
 
 function ComentsList({ allComments, park_id }) {
     const [text, setText] = useState('')

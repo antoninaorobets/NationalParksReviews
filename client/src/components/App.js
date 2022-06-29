@@ -1,14 +1,14 @@
 
-import React, { useEffect, useContext } from "react";
-import {  Routes, Route, Navigate } from "react-router-dom";
-import LoginForm from "./LoginForm";
-import SignUpForm from "./SignUpForm"
-import TopBar from "./TopBar";
-import ParksList from "./ParksList"
-import ParkInfo from "./ParkInfo";
-import { UserContext} from "../context/user"
-import MyParks from "./MyParks";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useContext } from "react";
+import { Route, Routes } from "react-router-dom";
+import { UserContext } from "../context/user";
+import LoginForm from "./LoginForm";
+import MyParks from "./MyParks";
+import ParkInfo from "./ParkInfo";
+import ParksList from "./ParksList";
+import SignUpForm from "./SignUpForm";
+import TopBar from "./TopBar";
 
 function App() {
   const {isLoggedIn} = useContext(UserContext)

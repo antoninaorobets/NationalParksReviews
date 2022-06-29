@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button, Row, Container, Carousel } from 'react-bootstrap';
+import React from 'react';
+import { Carousel } from 'react-bootstrap';
 
 function CaruselItem({img}) {
   console.log(img)
