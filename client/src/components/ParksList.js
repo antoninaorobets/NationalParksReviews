@@ -11,7 +11,7 @@ function ParksList() {
   const pageSize = 4
 
   useEffect(() => {
-    fetch(`/parks?limit=${pageSize}&start=${page * pageSize}`)
+    fetch(`/api/parks?limit=${pageSize}&start=${page * pageSize}`)
       .then((r) => {
         if (r.ok) {
           r.json().then((data) => setParks(data));
@@ -23,7 +23,7 @@ function ParksList() {
 
    useEffect(() => {
      setLoading(true)
-     fetch(`parks?limit=${pageSize}&start=${page * pageSize}`)
+     fetch(`/api/parks?limit=${pageSize}&start=${page * pageSize}`)
      .then((r) => {
       if (r.ok) {
         r.json().then((data) => {

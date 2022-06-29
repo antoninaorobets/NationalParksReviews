@@ -9,7 +9,7 @@ function ParkInfo() {
     const [park, setPark] = useState('')
 
     useEffect(() => {
-        fetch(`/parks/${id}`)
+        fetch(`/api/parks/${id}`)
             .then(r => {
                 if (r.ok) {
                     r.json().then(data => {

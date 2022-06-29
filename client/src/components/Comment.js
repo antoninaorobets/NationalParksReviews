@@ -12,7 +12,7 @@ function Comment({ comment, handleDelete, handleUpdate }) {
     const saveComment = (e) => {
         e.preventDefault()
         console.log('save')
-        fetch(`/parks/${comment.park_id}/comments/${comment.id}`, {
+        fetch(`/api/parks/${comment.park_id}/comments/${comment.id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -30,7 +30,7 @@ function Comment({ comment, handleDelete, handleUpdate }) {
         })
     }
     const onDelete = (e) => {
-        fetch(`/parks/${comment.park_id}/comments/${comment.id}`, {
+        fetch(`/api/parks/${comment.park_id}/comments/${comment.id}`, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" }
         }).then(resp => {

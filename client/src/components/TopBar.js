@@ -8,7 +8,7 @@ function TopBar() {
     const { user, setUser, isLoggedIn, setIsLoggedIn } = useContext(UserContext)
     const handleLogout = (e) => {
         e.preventDefault()
-        fetch('/logout', {
+        fetch('/api/logout', {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

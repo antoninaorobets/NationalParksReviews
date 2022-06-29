@@ -14,7 +14,7 @@ function ComentsList({ allComments, park_id }) {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (isLoggedIn) {
-            fetch(`/parks/${park_id}/comments`, {
+            fetch(`/api/parks/${park_id}/comments`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

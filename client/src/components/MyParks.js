@@ -11,7 +11,7 @@ function MyParks() {
     useEffect(() => {
         console.log("useEffect and fetch in MyParks", user)
         if (!user) return
-        fetch(`/parks?user_id=${user.id}`)
+        fetch(`/api/parks?user_id=${user.id}`)
             .then((r) => {
                 if (r.ok) {
                     r.json().then((data) => setParks(data));

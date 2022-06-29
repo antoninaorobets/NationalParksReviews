@@ -6,7 +6,7 @@ function UserProvider({ children }) {
     const [user, setUser] = useState()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
      useEffect(() => {
-        fetch('/me')
+        fetch('/api/me')
           .then(r=>{
             if (r.ok){
               r.json().then(user=>{
