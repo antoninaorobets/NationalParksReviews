@@ -5,7 +5,7 @@ import { UserProvider } from "./context/user"
 import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-//import 'semantic-ui-css/semantic.min.css'
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

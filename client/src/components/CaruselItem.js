@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Row, Container, Carousel } from 'react-bootstrap';
 
 function CaruselItem({img}) {
+  console.log(img)
   return (
       <Carousel.Item>
         <img

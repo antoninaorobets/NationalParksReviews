@@ -6,7 +6,7 @@ import { format } from 'fecha'
 
 function Comment({ comment, handleDelete, handleUpdate }) {
     const [isEditMode, setIsEditMode] = useState(false)
-    const { user} = useContext(UserContext)
+    const { user, isLoggedIn} = useContext(UserContext)
     const [text, setText] = useState(comment.text)
 
     const saveComment = (e) => {
@@ -46,14 +46,16 @@ function Comment({ comment, handleDelete, handleUpdate }) {
     const commentRead =                   
         <Form.Group>
             <Form.Control type="text" placeholder={text} disabled readOnly />
-            <Stack direction="horizontal" gap={3}  style={{padding: "8px"}}>
-                {(user.id === comment.user.id && !isEditMode)
+           
+             <Stack direction="horizontal" gap={3}  style={{padding: "8px"}}>
+                {(isLoggedIn && user.id === comment.user.id && !isEditMode)
                     ? <Button variant="secondary" onClick={() => { setIsEditMode(true) }}>Edit</Button>
                     : null}
-                {(user.id === comment.user.id)
+                {(isLoggedIn && user.id === comment.user.id)
                     ? <Button variant="secondary" onClick={onDelete}>Delete</Button>
                     : null}
             </Stack>
+
         </Form.Group>
         
 
@@ -62,10 +64,10 @@ function Comment({ comment, handleDelete, handleUpdate }) {
                 <Form.Group>
                 <Form.Control type="text" value={text} onChange={(e) => setText(e.target.value)} />
                 <Stack direction="horizontal" gap={3} style={{padding: "8px"}}>
-                    {(user.id === comment.user.id )
+                    {(isLoggedIn && user.id === comment.user.id )
                         ? <Button variant="success" type="submit" >Save</Button>
                         : null}
-                    {(user.id === comment.user.id)
+                    {(isLoggedIn && user.id === comment.user.id)
                         ? <Button variant="secondary" onClick={onDelete}>Delete</Button>
                         : null}
                 </Stack>
