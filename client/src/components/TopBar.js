@@ -34,11 +34,13 @@ function TopBar() {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <NavLink to="/parks">All Parks</NavLink>
+                        <NavLink to="/parks" style={{padding: "8px"}}>All Parks</NavLink>
+                        <div className="vr" > </div>
                         {(isLoggedIn)
-                            ? <NavLink to="/parks/my_parks">My Parks</NavLink>
+                            ? <NavLink to="/parks/my_parks" style={{padding: "8px"}}>My Parks</NavLink>
                             : null}
                     </Nav>
+                   
                     <Nav>
                         {(isLoggedIn)
                             ? <Navbar.Text>
@@ -46,8 +48,9 @@ function TopBar() {
 
                             </Navbar.Text>
                             : null} 
+                            <div className="vr" style={{padding: "8px"}} > <hr />  </div>
                         {(isLoggedIn)
-                            ? <NavLink to="/parks" onClick={handleLogout}> Logout </NavLink>
+                            ? <NavLink to="/parks" style={{padding: "8px"}} onClick={handleLogout}> Logout </NavLink>
                             : <NavLink to="/login"> Login </NavLink>}
                     </Nav>
                 </Navbar.Collapse>
