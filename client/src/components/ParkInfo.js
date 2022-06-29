@@ -3,6 +3,7 @@ import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import ComentsList from "./ComentsList";
 
+
 function ParkInfo() {
     const { id } = useParams()
     const [park, setPark] = useState('')
@@ -21,8 +22,6 @@ function ParkInfo() {
             })
     }, [])
 
-    // implement carousel
-    // console.log("images: ", park.images[0])
     return (
         <Container>
             <h1>{park.full_name}</h1>    
@@ -33,9 +32,10 @@ function ParkInfo() {
                         src={park.images[2].url}
                         alt={park.images[2].alt_text}
                     />                 
-                {/* {park.images.map(img => <CaruselItem key={img.id} img={img}/>)} */}
             </div>
             : null}
+
+           
             <p>{park.description}</p>
             <p>{park.weather_info}</p>
             <p>{park.operating_hours}</p>

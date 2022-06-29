@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Button, Card, Container, Form } from 'react-bootstrap';
+import { Button, Card, Container,Alert, Form } from 'react-bootstrap';
 import { UserContext } from '../context/user';
 import Comment from './Comment';
 
@@ -7,6 +7,7 @@ function ComentsList({ allComments, park_id }) {
     const [text, setText] = useState('')
     const { user, isLoggedIn } = useContext(UserContext)
     const [comments, setComments] = useState(allComments)
+    const [showError, setShowError] = useState('')
 
     const handleChange = (e) => {
         setText(e.target.value)
@@ -27,16 +28,14 @@ function ComentsList({ allComments, park_id }) {
                         r.json().then(newComent => {
                             setComments([...comments, newComent])
                             setText('')
-                            console.log('cleanup?')
                         })
                     } else {
-                        r.json().then(error => console.log(error))
+                        r.json().then(error => setShowError(error))
                     }
                 })
         }
         else {
-            //"state for error"
-            console.error("login")
+            setShowError("Please Login!")
         }
     }
     const handleDelete = (id) => {
@@ -58,8 +57,10 @@ function ComentsList({ allComments, park_id }) {
                 <Form.Group className="mb-3">
                     <Form.Label>New comment:</Form.Label>
                     <Form.Control type="text" value={text} onChange={handleChange} />
+                {(showError)
+                ? <Alert  variant="warning"> Please login!  </Alert> 
+                : null}
                 </Form.Group>
-
                 <Button variant="success" type="submit" >
                     Submit
                 </Button>
