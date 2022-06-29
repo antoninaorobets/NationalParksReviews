@@ -22,6 +22,7 @@ function App() {
             <Route path="/parks/:id" element={<ParkInfo />} />
             <Route path="/parks/my_parks" element={<MyParks />} />
             <Route path="/parks" element={<ParksList />} />
+            <Route path="/" strict element={<ParksList />} />
           </Routes>
       </div>
   );
